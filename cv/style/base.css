@@ -1,0 +1,215 @@
+/* css/base.css */
+/* Fuentes y distribución tomadas del proyecto original: Raleway, Franklin Gothic, Open Sans, Cambria, Segoe UI. */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;300&family=Open+Sans:wght@700&display=swap');
+
+html {
+  font-size: 62.5%; /* 1rem = 10px, como en el original */
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font: 1.6rem/1.6 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a { color: var(--accent); }
+a:hover, a:focus { color: var(--accent-hover); }
+
+h1, h2, h3 { margin: 0 0 0.8rem; }
+
+/* ---------- Barra superior (nav + tema) ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.6rem;
+  padding: 1rem 2.4rem;
+  background: var(--surface-alt);
+  border-bottom: 1px solid var(--border);
+}
+.header .logo {
+  font: 2.2rem 'Raleway', sans-serif;
+  font-weight: 300;
+  color: var(--text);
+  text-decoration: none;
+}
+.header nav a {
+  margin-left: 2rem;
+  font: 1.3rem 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text);
+  text-decoration: none;
+}
+.header nav a:hover { color: var(--accent); }
+.header button {
+  background: transparent;
+  font-size: 2.2rem;
+  padding: 0.2rem 0.8rem;
+}
+
+/* ---------- Secciones ---------- */
+section { padding: 8rem 2rem; }
+section > * { max-width: 110rem; margin-inline: auto; }
+
+/* Portada (#about): el "header" grande del original */
+#about {
+  min-height: 52rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background: var(--surface-alt);
+}
+#about h1 {
+  font: 6.4rem 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 600;
+  margin-bottom: 1.8rem;
+}
+#about h2 {
+  font: 2.5rem 'Raleway', sans-serif;
+  font-weight: 300;
+  color: var(--accent);
+}
+#about p {
+  max-width: 70rem;
+  color: var(--text-muted);
+}
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 2.4rem;
+  list-style: none;
+  padding: 0;
+  font-size: 2rem;
+}
+
+/* Títulos de sección: mayúsculas con letter-spacing, como .section-title */
+#experience > h2,
+#projects > h2,
+#skills > h2 {
+  font: 1.8rem/2.4rem 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+/* ---------- Tarjetas (polaroid del original) ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: all 0.2s linear;
+}
+.card:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow-hover);
+}
+.card h3 { font-size: 1.9rem; }
+.card ul { padding-left: 2rem; }
+
+/* Experiencia (#resume del original): tarjetas apiladas */
+#experience { background: var(--bg); }
+#experience .card {
+  max-width: 80rem;
+  margin-bottom: 2.4rem;
+  border-left: 5px solid var(--accent);
+}
+#experience small {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.8rem;
+  font: 1.3rem Cambria, Cochin, Georgia, Times, serif;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-radius: 0.3rem;
+}
+
+/* Proyectos (#portfolio del original): cuadrícula */
+#projects { background: var(--surface-alt); }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+  gap: 3rem;
+}
+
+/* Etiquetas (badges) */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0 !important;
+  margin: 1rem 0;
+}
+.tags li {
+  padding: 0.4rem 1.2rem;
+  font: 1.3rem Cambria, Cochin, Georgia, Times, serif;
+  background: var(--accent-soft);
+  color: var(--accent-soft-text);
+  border-radius: 99rem;
+}
+
+/* Skills: banda oscura, como #skills del original */
+#skills {
+  background: var(--band);
+  color: var(--band-text);
+}
+.skill-group { margin-bottom: 3.2rem; text-align: center; }
+.skill-group h3 { font: 2.2rem 'Raleway', sans-serif; font-weight: 300; }
+.skill-group .tags { justify-content: center; }
+#skills .tags li {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--band-text);
+}
+
+footer {
+  background: var(--band);
+  color: var(--band-text);
+  padding: 3rem 2rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+/* ---------- Botones y modal ---------- */
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1.6rem;
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+button:hover { background: var(--accent-hover); }
+.header button:hover { background: transparent; }
+
+dialog {
+  width: 90%;
+  max-width: 60rem;
+  padding: 2.4rem;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
+dialog form { text-align: right; margin-top: 2rem; }
+
+/* ---------- Móvil ---------- */
+@media (max-width: 700px) {
+  .header { flex-wrap: wrap; justify-content: center; }
+  .header nav { order: 3; width: 100%; text-align: center; }
+  .header nav a { margin: 0 1rem; }
+  #about h1 { font-size: 4rem; }
+  section { padding: 5rem 1.6rem; }
+}

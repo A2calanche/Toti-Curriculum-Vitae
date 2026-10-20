@@ -1,0 +1,47 @@
+/* css/themes.css */
+/* Claro: menta. Oscuro: los grises del tema original (#494949 / #5b5b5b / #6d6d6d / #1F1F1F). */
+
+:root,
+[data-theme="light"] {
+  --bg: #f3fbf7;
+  --surface: #ffffff;
+  --surface-alt: #e3f5ec;
+  --border: #cfe8dd;
+  --text: #12302a;
+  --text-muted: #4a6b62;
+  --accent: #0f766e;
+  --accent-hover: #0b5a54;
+  --accent-contrast: #ffffff;
+  --accent-soft: #b8ead2;
+  --accent-soft-text: #0b4f47;
+  --band: #12302a;          /* skills y footer (antes #1F1F1F) */
+  --band-text: #f3fbf7;
+  --shadow: 0 4px 6px rgba(15, 118, 110, 0.15);
+  --shadow-hover: 0 10px 20px rgba(15, 118, 110, 0.3);
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #5b5b5b;
+  --surface: #6d6d6d;
+  --surface-alt: #494949;
+  --border: #7f7f7f;
+  --text: #ffffff;
+  --text-muted: #d6d6d6;
+  --accent: #b8ead2;
+  --accent-hover: #ffffff;
+  --accent-contrast: #1f1f1f;
+  --accent-soft: #494949;
+  --accent-soft-text: #e3f5ec;
+  --band: #1f1f1f;
+  --band-text: #ffffff;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.7);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}

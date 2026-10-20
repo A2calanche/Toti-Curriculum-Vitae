@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arturo | Currículo</title>
+  <meta name="description" content="Desenvolvedor de software e analista de dados." />
+  <link rel="stylesheet" href="style/base.css" />
+  <link rel="stylesheet" href="style/theme.css" />
+  <style>[v-cloak] { display: none; }</style>
+</head>
+<body>
+  <div id="app" v-cloak>
+
+    <!-- HEADER -->
+    <header class="header">
+      <a href="#about" class="logo">{{ cv.name }}</a>
+      <nav>
+        <a href="#about">Sobre mim</a>
+        <a href="#experience">Experiência</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projetos</a>
+      </nav>
+      <button @click="toggleTheme" aria-label="Alternar tema">
+        {{ theme === 'dark' ? '☀️' : '🌙' }}
+      </button>
+    </header>
+
+    <main>
+      <!-- ABOUT -->
+      <section id="about">
+        <h1>{{ cv.name }}</h1>
+        <h2>{{ cv.title }}</h2>
+        <p>{{ cv.about }}</p>
+        <ul class="social">
+          <li v-for="link in cv.links" :key="link.label">
+            <a :href="link.url" target="_blank" rel="noopener">{{ link.label }}</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience">
+        <h2>Experiência</h2>
+        <article v-for="job in cv.experience" :key="job.company" class="card">
+          <h3>{{ job.role }} · {{ job.company }}</h3>
+          <small>{{ job.period }}</small>
+          <ul>
+            <li v-for="point in job.points" :key="point">{{ point }}</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <h2>Skills</h2>
+        <div v-for="group in cv.skills" :key="group.name" class="skill-group">
+          <h3>{{ group.name }}</h3>
+          <ul class="tags">
+            <li v-for="item in group.items" :key="item">{{ item }}</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <h2>Projetos</h2>
+        <div class="grid">
+          <article v-for="p in cv.projects" :key="p.title" class="card">
+            <h3>{{ p.title }}</h3>
+            <p>{{ p.summary }}</p>
+            <ul class="tags">
+              <li v-for="t in p.stack" :key="t">{{ t }}</li>
+            </ul>
+            <button @click="selected = p">Ver detalhes</button>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <dialog ref="dialog" @close="selected = null" @click="onBackdrop">
+      <template v-if="selected">
+        <h3>{{ selected.title }}</h3>
+        <p>{{ selected.description }}</p>
+        <a :href="selected.url" target="_blank" rel="noopener">Ver projeto</a>
+      </template>
+      <form method="dialog"><button>Fechar</button></form>
+    </dialog>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© {{ new Date().getFullYear() }} {{ cv.name }}</p>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
